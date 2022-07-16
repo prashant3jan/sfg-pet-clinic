@@ -9,8 +9,7 @@
     <scm>
         <url>https://github.com/prashant3jan/sfg-pet-clinic</url>
         <connection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
-      <tag>sfg-pet-clinic-0.0.3</tag>
+        <developerConnection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</developerConnection> 
   </scm>
 
     <modules>
