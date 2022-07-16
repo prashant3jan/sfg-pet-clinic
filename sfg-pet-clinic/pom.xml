@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>guru.springframework</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>sfg-pet-clinic-0.0.3</version>
 
     <scm>
         <url>https://github.com/prashant3jan/sfg-pet-clinic</url>
         <connection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
-    </scm>
+      <tag>sfg-pet-clinic-0.0.3</tag>
+  </scm>
 
     <modules>
         <module>pet-clinic-data</module>
@@ -27,7 +27,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
