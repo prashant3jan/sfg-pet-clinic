@@ -8,8 +8,8 @@
 
     <scm>
         <url>https://github.com/prashant3jan/sfg-pet-clinic</url>
-        <connection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
+        <connection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</connection>
+        <developerConnection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
     <tag>git</tag>
   </scm>
 
