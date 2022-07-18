@@ -6,13 +6,6 @@
     <artifactId>sfg-pet-clinic</artifactId>
     <version>sfg-pet-clinic-0.0.4-SNAPSHOT</version>
 
-    <scm>
-        <url>https://github.com/prashant3jan/sfg-pet-clinic</url>
-        <connection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</connection>
-        <developerConnection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
-    <tag>git</tag>
-  </scm>
-
     <modules>
         <module>pet-clinic-data</module>
         <module>pet-clinic-web</module>
@@ -47,8 +40,15 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <goals>install</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <scm>
+        <url>https://github.com/prashant3jan/sfg-pet-clinic</url>
+        <connection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</connection>
+        <developerConnection>scm:git:https://github.com/prashant3jan/sfg-pet-clinic.git</developerConnection>
+        <tag>git</tag>
+    </scm>
 </project>
