@@ -5,17 +5,7 @@
     <groupId>guru.springframework</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
     <version>0.0.5-SNAPSHOT</version>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-launcher</artifactId>
-                <version>1.2.0</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
+    
     <modules>
         <module>pet-clinic-data</module>
         <module>pet-clinic-web</module>
