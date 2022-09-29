@@ -21,8 +21,8 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          -mvn -f D:/git/sfg-pet-clinic/sfg-pet-clinic
           command: mvn -B -DskipTests clean package
+          command1: mvn compile -PotherOutputDir
       # Then run your tests!
       - run:
           name: Test
