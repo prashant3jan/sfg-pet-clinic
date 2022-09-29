@@ -22,11 +22,12 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-          command1: mvn compile -PotherOutputDir
+
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test
+          #command: mvn test
+          command: mvn install
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
