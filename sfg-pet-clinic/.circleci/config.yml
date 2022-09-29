@@ -23,11 +23,12 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
 
+      - run: mvn install -DskipTests
+        
       # Then run your tests!
       - run:
           name: Test
-          #command: mvn test
-          command: mvn install
+          command: mvn test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
