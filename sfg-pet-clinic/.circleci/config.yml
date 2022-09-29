@@ -15,11 +15,11 @@ jobs:
       - image: cimg/openjdk:11.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    working_directory: ~/sfg-pet-clinic/sfg-pet-clinic
+    working_directory: $CIRCLE_WORKING_DIRECTORY
     steps:
       # Checkout the code as the first step.
       - checkout:
-          - path: $GIT/sfg-pet-clinic
+          - path: ~/sfg-pet-clinic
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
