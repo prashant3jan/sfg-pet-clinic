@@ -5,6 +5,14 @@
     <groupId>guru.springframework</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
     <version>0.0.5-SNAPSHOT</version>
+    <profiles>
+        <profile>
+            <id>otherOutputDir</id>
+            <build>
+                <directory>D:/git/sfg-pet-clinic/sfg-pet-clinic</directory>
+            </build>
+        </profile>
+    </profiles>
     
     <modules>
         <module>pet-clinic-data</module>

@@ -41,5 +41,5 @@ jobs:
 
       # run tests!
       - run:
-         - mvn -f sfg-pet-clinic/sfg-pet-clinic/pom.xml clean compile
+         - mvn -compile -P otherOutputDir
          - mvn integration-test
