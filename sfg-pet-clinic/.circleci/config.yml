@@ -15,6 +15,7 @@ jobs:
       - image: cimg/openjdk:11.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    working_directory: D:/git/sfg-pet-clinic/sfg-pet-clinic
     steps:
       # Checkout the code as the first step.
       - checkout
@@ -23,8 +24,6 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
 
-      - run: mvn install -DskipTests
-        
       # Then run your tests!
       - run:
           name: Test
