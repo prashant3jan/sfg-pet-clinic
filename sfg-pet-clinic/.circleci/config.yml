@@ -18,7 +18,8 @@ jobs:
     working_directory: ~/sfg-pet-clinic/sfg-pet-clinic
     steps:
       # Checkout the code as the first step.
-      - checkout
+      - checkout:
+          - path: ~/sfg-pet-clinic
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
