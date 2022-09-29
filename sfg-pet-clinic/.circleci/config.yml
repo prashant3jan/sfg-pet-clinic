@@ -40,4 +40,6 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test
+      - run:
+         - mvn -f sfg-pet-clinic/sfg-pet-clinic/pom.xml clean compile
+         - mvn integration-test
