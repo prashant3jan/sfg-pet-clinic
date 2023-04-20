@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Optional;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -85,6 +87,10 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
+
+        Set<Owner> ownerSet = ownerService.findAll();
+        Optional<Owner> optionalOwner = ownerSet.stream().findFirst();
+        System.out.println("ownerId " + optionalOwner.get().getId());
 
         Visit catVisit = new Visit();
         catVisit.setPet(fionasCat);
