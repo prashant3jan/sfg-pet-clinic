@@ -68,6 +68,7 @@ public class PetController {
 
     @PostMapping("/pets/new")
     public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model){
+        //public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model){
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(),true) != null){
             result.rejectValue("name", "duplicate","already exists");
         }
@@ -93,8 +94,10 @@ public class PetController {
     }
 
     @PostMapping("/pets/{petId}/edit")
-    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model){
+    //public String processUpdateForm(Owner owner,@Valid Pet pet, BindingResult result,  Model model){
+    public String processUpdateForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model){
         if(result.hasErrors()){
+            pet.setOwner(owner);
             model.addAttribute("pet",pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }else{
@@ -102,21 +105,11 @@ public class PetController {
                 Set<Pet> pets = new HashSet<>();
                 owner.setPets(pets);
             }
-            Pet petFromDB = petService.findById(pet.getId()); // fetch the entity from the database
-            Optional<Pet> optionalPet = Optional.of(petFromDB);
-            if (optionalPet.isPresent()) {
-                Pet existingPet = optionalPet.get();
-                existingPet.setName(pet.getName()); // modify the entity
-                existingPet.setBirthDate(pet.getBirthDate());
-                existingPet.setPetType(pet.getPetType());
-                existingPet.setVisits(pet.getVisits());
-                existingPet.setOwner(owner);
-                owner.getPets().add(pet);
-                pet.setOwner(owner);
-                petService.save(pet);
+            owner.getPets().add(pet);
+            pet.setOwner(owner);
+            petService.save(pet);
+            return "redirect:/owners/"+owner.getId();
 
-        }
-            return "redirect:/owners/" + owner.getId();
         }
     }
 }
