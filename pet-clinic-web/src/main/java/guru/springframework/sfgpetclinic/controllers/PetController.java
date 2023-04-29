@@ -7,6 +7,7 @@ import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -53,14 +55,13 @@ public class PetController {
 
     @GetMapping("/pets/new")
     public String initCreationForm(Owner owner, Model model) {
-        PetType petType = PetType.builder().name("").build();
-
-        Pet pet = Pet.builder().name(null).petType(petType).owner(owner).birthDate(null).visits(null).build();
+        Pet pet = new Pet();
         if(owner.getPets() == null){
            Set<Pet> pets =  new HashSet<>();
            owner.setPets(pets);
         }
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
@@ -74,8 +75,8 @@ public class PetController {
             Set<Pet> pets = new HashSet<>();
             owner.setPets(pets);
         }
-
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         if(result.hasErrors()){
             model.put("pet",pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -94,7 +95,6 @@ public class PetController {
     @PostMapping("/pets/{petId}/edit")
     public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model){
         if(result.hasErrors()){
-            pet.setOwner(owner);
             model.addAttribute("pet",pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }else{
@@ -102,9 +102,21 @@ public class PetController {
                 Set<Pet> pets = new HashSet<>();
                 owner.setPets(pets);
             }
-            owner.getPets().add(pet);
-            petService.save(pet);
-            return "redirect:/owners/"+owner.getId();
+            Pet petFromDB = petService.findById(pet.getId()); // fetch the entity from the database
+            Optional<Pet> optionalPet = Optional.of(petFromDB);
+            if (optionalPet.isPresent()) {
+                Pet existingPet = optionalPet.get();
+                existingPet.setName(pet.getName()); // modify the entity
+                existingPet.setBirthDate(pet.getBirthDate());
+                existingPet.setPetType(pet.getPetType());
+                existingPet.setVisits(pet.getVisits());
+                existingPet.setOwner(owner);
+                owner.getPets().add(pet);
+                pet.setOwner(owner);
+                petService.save(pet);
+
+        }
+            return "redirect:/owners/" + owner.getId();
         }
     }
 }

@@ -15,16 +15,18 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
-
     private final VisitService visitService;
 
+    private final PetService petService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService, PetService petService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
         this.visitService = visitService;
+        this.petService = petService;
     }
 
     @Override
@@ -71,6 +73,7 @@ public class DataLoader implements CommandLineRunner {
         owner1.getPets().add(mikesPet);
 
         ownerService.save(owner1);
+        petService.save(mikesPet);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
@@ -84,10 +87,10 @@ public class DataLoader implements CommandLineRunner {
         fionasCat.setOwner(owner2);
         fionasCat.setBirthDate(LocalDate.now());
         fionasCat.setName("Just Cat");
+
         owner2.getPets().add(fionasCat);
-
         ownerService.save(owner2);
-
+        petService.save(fionasCat);
         Set<Owner> ownerSet = ownerService.findAll();
         Optional<Owner> optionalOwner = ownerSet.stream().findFirst();
         System.out.println("ownerId " + optionalOwner.get().getId());
